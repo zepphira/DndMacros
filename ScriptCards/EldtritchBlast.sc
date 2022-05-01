@@ -10,6 +10,8 @@
 
   --#sourceToken|@{selected|token_id}
   --#targetToken|@{target|token_id}
+  --/|Set this variable to the (case sensitive) name of a Jukebox track to play when the spell is cast
+  --&SoundEffectTrack|EldritchBlast
 
   --&ShowFX|1 --/| Set to 0 to disable effects (visual and audio)
 
@@ -47,7 +49,7 @@
 		  --?[$AttackRoll.Base] -eq 1|Fumble
 		  --?[$AttackRoll.Total] -ge [$TargetAC.Total]|Hit
 
-		  --+|&#x274C;[b]Missed![/b]So close, but they ducked just in time. Better luck next time (if there is a next time).
+		  --+|❌[b]Missed![/b]So close, but they ducked just in time. Better luck next time (if there is a next time).
 		  
 		  --?[&ShowFX] -eq 1|[
 		  	--vtoken|@{selected|token_id} burn-magic
@@ -56,7 +58,7 @@
 		  --^TOPLOOP|
 
 		  --:Fumble|
-		  --+|&#x1F613;[b]Fumble![/b]The attack went horribly wrong.
+		  --+|😓[b]Fumble![/b]The attack went horribly wrong.
 		  --?[&ShowFX] -eq 1|[
 		  	--vtoken|@{selected|token_id} glow-magic
 		  --]
@@ -66,14 +68,14 @@
 		  --:Hit|
 		  --=Damage|1d10 + @{selected|charisma_mod} [Cha]
 		  --=TtlDamage|[$TtlDamage] + [$Damage]
-		  --+|&#x1F3AF;[b]Hit![/b] The blast did [$Damage] points of Force damage.
+		  --+|🎯[b]Hit![/b] The blast did [$Damage] points of Force damage.
 		  --@token-mod|_ids [&TTokenId1] _ignore-selected _set bar1_value|-[$Damage.Total] 
 
 		  --?[&ShowFX] -eq 1|[
 			  --vtoken|@{selected|token_id} burn-magic
 			  --vtoken|[&TTokenId1] burst-fire
 			  --vbetweentokens|@{selected|token_id} [&TTokenId1] beam-magic
-			  --@roll20AM|_audio,play,nomenu|EldritchBlast
+			  --a|[&SoundEffectTrack]
 			--]|
 
 		  --^TOPLOOP|
@@ -81,13 +83,13 @@
 		  --:Crit|
 		  --=Damage|1d10 + @{selected|charisma_mod} [Cha] + 1d10 [CRIT]
 		  --=TtlDamage|[$TtlDamage] + [$Damage]
-		  --+|&#x2757;&#x2757;&#x2757;[b]Critical Hit!!![/b]The blast did [$Damage] points of Force damage.
+		  --+|❗❗❗[b]Critical Hit!!![/b]The blast did [$Damage] points of Force damage.
 		  --@token-mod|_ids [&TTokenId1] _ignore-selected _set bar1_value|-[$Damage.Total] 
 		  --?[&ShowFX] -eq 1|[
 			  --vtoken|@{selected|token_id} burn-magic
 			  --vtoken|[&TTokenId1] burst-fire
 			  --vbetweentokens|@{selected|token_id} [&TTokenId1] beam-magic
-			  --@roll20AM|_audio,play,nomenu|EldritchBlast
+			  --a|[&SoundEffectTrack]
 			--]|
 		  --^TOPLOOP|
 
@@ -97,7 +99,7 @@
   --*|OrigHP:[$TargetHP] Dmg:[$TtlDamage] Rem:[$RemainingHP]  AtkDice:[&AtkDice]
   --?[$RemainingHP] -gt 0|NOTDEAD
 	  --+|[hr]
-	  --+|[c][b]*** &#x1F480; You Killed Em! &#x1F480; ***[/b][/c][hr]
+	  --+|[c][b]*** 💀 You Killed Em! 💀 ***[/b][/c][hr]
 
 	  --~|turnorder;removetoken;[&TTokenId1]
 	  --@token-mod|_ids [&TTokenId1] _ignore-selected _set statusmarkers|dead bar1_value|0
