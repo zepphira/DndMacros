@@ -11,12 +11,12 @@
   --#sourceToken|@{selected|token_id}
   --#targetToken|@{target|token_id}
 
-  --&ShowFX|0 --/| Set to 0 to disable effects (visual and audio)
+  --&ShowFX|1 --/| Set to 0 to disable effects (visual and audio)
 
   --&STokenId|@{selected|token_id}
   --&TTokenId1|@{target|token_id}
 
-  --=TargetHP|@{target|bar1}
+  --=TargetHP|@{target|bar3}
 	--=TtlDamage|0
 
   --=TargetAC|@{target|npc_ac}
@@ -72,7 +72,7 @@
 		  --?[&ShowFX] -eq 1|[
 			  --vtoken|@{selected|token_id} burn-magic
 			  --vtoken|[&TTokenId1] burst-fire
-			  --vbetweentokens|@{selected|token_id} [&TTokenId1] beam-fire
+			  --vbetweentokens|@{selected|token_id} [&TTokenId1] MagicMissile
 			  --@roll20AM|_audio,play,nomenu|EldritchBlast
 			--]|
 
@@ -86,7 +86,7 @@
 		  --?[&ShowFX] -eq 1|[
 			  --vtoken|@{selected|token_id} burn-magic
 			  --vtoken|[&TTokenId1] burst-fire
-			  --vbetweentokens|@{selected|token_id} [&TTokenId1] beam-fire
+			  --vbetweentokens|@{selected|token_id} [&TTokenId1] MagicMissile
 			  --@roll20AM|_audio,play,nomenu|EldritchBlast
 			--]|
 		  --^TOPLOOP|
