@@ -72,7 +72,7 @@
 		  --?[&ShowFX] -eq 1|[
 			  --vtoken|@{selected|token_id} burn-magic
 			  --vtoken|[&TTokenId1] burst-fire
-			  --vbetweentokens|@{selected|token_id} [&TTokenId1] MagicMissile
+			  --vbetweentokens|@{selected|token_id} [&TTokenId1] beam-magic
 			  --@roll20AM|_audio,play,nomenu|EldritchBlast
 			--]|
 
@@ -86,7 +86,7 @@
 		  --?[&ShowFX] -eq 1|[
 			  --vtoken|@{selected|token_id} burn-magic
 			  --vtoken|[&TTokenId1] burst-fire
-			  --vbetweentokens|@{selected|token_id} [&TTokenId1] MagicMissile
+			  --vbetweentokens|@{selected|token_id} [&TTokenId1] beam-magic
 			  --@roll20AM|_audio,play,nomenu|EldritchBlast
 			--]|
 		  --^TOPLOOP|
